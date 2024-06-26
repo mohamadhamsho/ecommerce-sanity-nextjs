@@ -12,7 +12,20 @@ async function Navbar() {
   return (
     <div>
       Hello From Navbar
-      <Image src={urlFor(data.image1).url()} alt="image 01" className="" />
+      <Image
+        src={urlFor(data.image1).url()}
+        alt="image 01"
+        className=""
+        width={320}
+        height={320}
+      />
+      <Image
+        src={urlFor(data.image2).url()}
+        alt="image 02"
+        className=""
+        width={320}
+        height={320}
+      />
     </div>
   );
 }
