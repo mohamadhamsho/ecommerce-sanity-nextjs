@@ -7,6 +7,7 @@ async function getData() {
 
   return data;
 }
+export const dynamic = "force-dynamic";
 async function Navbar() {
   const data = await getData();
   return (
