@@ -11,7 +11,7 @@ async function Navbar() {
   const data = await getData();
   return (
     <div>
-      Hello From Navbar
+      Hello From Navbar b
       <Image
         src={urlFor(data.image1).url()}
         alt="image 01"
