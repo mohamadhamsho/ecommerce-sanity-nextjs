@@ -8,7 +8,7 @@ async function getData() {
   return data;
 }
 // export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 5;
 async function Navbar() {
   const data = await getData();
   return (
