@@ -1,14 +1,16 @@
 import Image from "next/image";
 import { client, urlFor } from "../lib/sanity";
 import { cache } from "react";
+import next from "next";
 
 async function getData() {
   const query = "*[_type=='heroImage'][0]";
-  const data = await client.fetch(query, { cache: "no-store" });
+  const data = await client.fetch(query);
 
   return data;
 }
-// export const revalidate = 30; // revalidate at most every hour
+export const dynamic = "force-dynamic"; // revalidate at most every hour
+export const revalidate = 0; // revalidate at most every hour
 async function Navbar() {
   const data = await getData();
   return (
