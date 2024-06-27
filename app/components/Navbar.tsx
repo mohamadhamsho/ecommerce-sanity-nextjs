@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { client, urlFor } from "../lib/sanity";
-import { cache } from "react";
-import next from "next";
 
 async function getData() {
   const query = "*[_type=='heroImage'][0]";
@@ -10,7 +8,7 @@ async function getData() {
   return data;
 }
 // export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 30;
 async function Navbar() {
   const data = await getData();
   return (
