@@ -9,7 +9,7 @@ async function getData() {
 
   return data;
 }
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 export const revalidate = 0;
 async function Navbar() {
   const data = await getData();
