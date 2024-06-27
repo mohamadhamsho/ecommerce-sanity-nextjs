@@ -9,8 +9,8 @@ async function getData() {
 
   return data;
 }
-export const dynamic = "force-dynamic"; // revalidate at most every hour
-export const revalidate = 0; // revalidate at most every hour
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 async function Navbar() {
   const data = await getData();
   return (
