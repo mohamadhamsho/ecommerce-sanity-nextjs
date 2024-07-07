@@ -1,5 +1,11 @@
 // export const revalidate = 30; // revalidate at most every hour
 
+import Hero from "./components/Hero";
+
 export default function Home() {
-  return <section>Home Page</section>;
+  return (
+    <div className="bg-white pb-6 sm:pb-8 lg:pb-12">
+      <Hero />
+    </div>
+  );
 }
