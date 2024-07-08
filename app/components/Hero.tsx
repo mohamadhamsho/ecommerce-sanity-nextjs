@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { client, urlFor } from "../lib/sanity";
+import Link from "next/link";
+import { links } from "../constants/nav-links";
 
 async function getData() {
   const query = "*[_type == 'heroImage'][0]";
@@ -10,21 +12,19 @@ async function getData() {
 }
 const Hero = async () => {
   const data = await getData();
-  console.log(data);
 
   return (
     <section className="mx-auto max-w-2xl pb-6 px-4 lg:px-8 lg:max-w-7xl">
-      <div className="mb-8 flex flex-wrap justify-between md:mb-16">
+      <div className="mb-8 flex flex-wrap justify-between md:mb-2">
         <div
           className="mb-6 flex w-full flex-col justify-center juscecenter
-     sm:mb-12 lg:mb-0 lg:w-1/3 lg:pb-24 lg:pt-48"
+     sm:mb-12 lg:mb-0 lg:w-1/3 lg:pb-24 lg:pt-12"
         >
           <h2 className="mb-4 text-4xl font-bold text-black sm:text-5xl md:mb-8 md:text-6xl">
             Top Fashion for a top price
           </h2>
           <p className="max-w-md leading-relaxed text-gray-500 xl:text-lg">
-            Discover the latest trends in fashion. Shop now for exclusive styles
-            and deals!
+          Step into style with our collection. Explore the latest fashion trends. Shop now for stylish outfits and exclusive deals to elevate your look.
           </p>
         </div>
 
@@ -49,6 +49,19 @@ const Hero = async () => {
               className="h-full w-full object-cover object-center"
             />
           </div>
+        </div>
+      </div>
+      <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+        <div className="flex h-12 w-64 divide-x overflow-hidden rounded-lg border">
+          {links.slice(1).map((link, idx) => (
+            <Link
+              key={idx}
+              href={link.href}
+              className="flex w-1/3 items-center justify-center text-gray-500 transition hover:bg-gray-100 active:bg-gray-200"
+            >
+              {link.name}
+            </Link>
+          ))}
         </div>
       </div>
     </section>

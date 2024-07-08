@@ -3,13 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
+import { links } from "../constants/nav-links";
 
-const links = [
-  { href: "/", name: "Home" },
-  { href: "/Men", name: "Men" },
-  { href: "/Women", name: "Women" },
-  { href: "/Teen", name: "Teen" },
-];
 // export const dynamic = "force-dynamic";
 export const revalidate = 5;
 function Navbar() {
