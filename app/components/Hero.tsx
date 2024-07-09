@@ -1,15 +1,10 @@
 import Image from "next/image";
-import { client, urlFor } from "../lib/sanity";
+import { urlFor } from "../lib/sanity";
 import Link from "next/link";
 import { links } from "../constants/nav-links";
+import { getData } from "../lib/hero-banner";
 
-async function getData() {
-  const query = "*[_type == 'heroImage'][0]";
 
-  const data = await client.fetch(query);
-
-  return data;
-}
 const Hero = async () => {
   const data = await getData();
 

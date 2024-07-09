@@ -1,28 +1,12 @@
 import Link from "next/link";
-import { client } from "../lib/sanity";
-import { IProduct } from "../types/interface";
+import { IProducts } from "../types/interface";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { getNewestProduct } from "../lib/newest-products";
 
-async function getNewestProduct() {
-  const query = `
-        *[_type == "product"][0...4] | order(releaseDate desc) {
-            _id,
-            price,
-            name,
-            "slug": slug.current,
-            "categoryName": category -> name,
-            "imageUrl": images[0].asset->url,
-            description
-            }`;
-  const data = client.fetch(query);
-
-  return data;
-}
 
 async function Newest() {
-  const data: IProduct[] = await getNewestProduct();
-  console.log(data);
+  const data: IProducts[] = await getNewestProduct();
 
   return (
     <div className="bg-white">
@@ -56,7 +40,7 @@ async function Newest() {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <Link href={`/products/${product.slug}`}>
+                    <Link href={`/product/${product.slug}`}>
                       {product.name}
                     </Link>
                   </h3>
