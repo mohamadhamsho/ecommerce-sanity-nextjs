@@ -6,7 +6,6 @@ import { Star, Truck } from "lucide-react";
 
 async function SingleProduct({ params }: { params: { slug: string } }) {
   const data: ISingleProduct = await getSingleProduct(params.slug);
-  console.log(data);
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">

@@ -1,8 +1,8 @@
 import { client } from "../lib/sanity";
 
-export async function getNewestProduct() {
+export async function getCategoryProducts(category: string) {
     const query = `
-          *[_type == "product"][0...4] | order(releaseDate desc) {
+          *[_type == "product" && category->name == "${category}"]{
               _id,
               price,
               name,
