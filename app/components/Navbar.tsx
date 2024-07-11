@@ -4,11 +4,13 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import { links } from "../constants/nav-links";
+import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
 
 // export const dynamic = "force-dynamic";
 export const revalidate = 5;
 function Navbar() {
   const pathName = usePathname();
+  const {user} = useUser()
   return (
     <header className="mb-8 border-b">
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
@@ -40,9 +42,9 @@ function Navbar() {
           ))}
         </nav>
 
-        <div className="flex divide-x border-r lg:border-l">
+        <div className="flex relative">
           <Button
-            className="flex flex-col gap-y-1.5 h-16 w-16 sm:h-20 sm:w-20 rounded-none"
+            className="flex flex-col gap-y-1.5 h-16 w-16 sm:h-20 sm:w-20 rounded-none col-span-8"
             variant="outline"
           >
             <ShoppingBag />
@@ -50,6 +52,10 @@ function Navbar() {
               Cart
             </span>
           </Button>
+          {!user ? <Link href="/sign-in" className="bg-primary text-sm text-white font-bold px-4 flex justify-center items-center">Sign In</Link>: null}
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </header>
