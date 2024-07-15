@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
 import { links } from "../constants/nav-links";
 import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
+import { useShoppingCart } from "use-shopping-cart";
 
 // export const dynamic = "force-dynamic";
 export const revalidate = 5;
 function Navbar() {
   const pathName = usePathname();
-  const {user} = useUser()
+  const { user } = useUser();
+  const {handleCartClick} = useShoppingCart()
   return (
     <header className="mb-8 border-b">
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
@@ -46,16 +48,31 @@ function Navbar() {
           <Button
             className="flex flex-col gap-y-1.5 h-16 w-16 sm:h-20 sm:w-20 rounded-none col-span-8"
             variant="outline"
+            onClick={() => handleCartClick()}
           >
             <ShoppingBag />
             <span className="hidden sm:block font-semibold text-gray-500 text-xs">
               Cart
             </span>
           </Button>
-          {!user ? <Link href="/sign-in" className="bg-primary text-sm text-white font-bold px-4 flex justify-center items-center">Sign In</Link>: null}
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          {!user ? (
+            <Link
+              href="/sign-in"
+              className="bg-primary text-sm text-white font-bold px-4 flex justify-center items-center"
+            >
+              Sign In
+            </Link>
+          ) : null}
+          {user ? (
+            <Button
+              className="flex justify-center items-center gap-y-1.5 h-16 w-16 sm:h-20 sm:w-20 rounded-none col-span-8"
+              variant="outline"
+            >
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </Button>
+          ) : null}
         </div>
       </div>
     </header>

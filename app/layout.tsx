@@ -9,6 +9,8 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import CartProvider from "./components/Providers";
+import ShoppingCartModal from "./components/ShoppingCartModal";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -26,8 +28,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Navbar />
-          {children}
+          <CartProvider>
+            <Navbar />
+            <ShoppingCartModal />
+            {children}
+          </CartProvider>
         </body>
       </html>
     </ClerkProvider>

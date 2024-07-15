@@ -1,3 +1,4 @@
+import AddToBag from "@/app/components/AddToBag";
 import ImageGallery from "@/app/components/ImageGallery";
 import { getSingleProduct } from "@/app/lib/single-product";
 import { ISingleProduct } from "@/app/types/interface";
@@ -48,10 +49,19 @@ async function SingleProduct({ params }: { params: { slug: string } }) {
             </div>
 
             <div className="flex gap-2.5">
-              <Button>Add To Bag</Button>
+              <AddToBag
+                currency="USD"
+                description={data.description}
+                image={data.images[0]}
+                name={data.name}
+                price={data.price}
+                key={data._id}
+              />
               <Button variant={"secondary"}>Checkout now</Button>
             </div>
-            <p className="mt-12 text-base text-gray-500 tracking-wide">{data.description}</p>
+            <p className="mt-12 text-base text-gray-500 tracking-wide">
+              {data.description}
+            </p>
           </div>
         </div>
       </div>
