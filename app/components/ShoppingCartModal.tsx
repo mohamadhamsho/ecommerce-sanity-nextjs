@@ -19,8 +19,19 @@ export default function ShoppingCartModal() {
     cartDetails,
     removeItem,
     totalPrice,
+    redirectToCheckout,
   } = useShoppingCart();
-
+  async function handleCheckedOutClick(event: any) {
+    event.preventDefault();
+    try {
+      const result = await redirectToCheckout();
+      if (result?.error) {
+        console.log("result");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
       <SheetContent className="sm:max-w-lg w-[90vw]">
@@ -76,17 +87,25 @@ export default function ShoppingCartModal() {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <div className="flex justify-between text-base font-medium text-gray-900">
               <p>Subtotal</p>
-              <p>${totalPrice}</p>
+              <p>${totalPrice?.toFixed(2)}</p>
+
+
             </div>
             <p className="mt-0.5 text-sm text-gray-500">
               Shipping and taxes are calculated at checkout.
             </p>
             <div className="mt-6">
-              <Button className="w-full">Checkout</Button>
+              <Button onClick={handleCheckedOutClick} className="w-full">Checkout</Button>
             </div>
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
               <p>
-                OR <button onClick={() => handleCartClick()} className=" font-medium text-primary hover:text-primary/80">Continue Shopping</button>
+                OR{" "}
+                <button
+                  onClick={() => handleCartClick()}
+                  className=" font-medium text-primary hover:text-primary/80"
+                >
+                  Continue Shopping
+                </button>
               </p>
             </div>
           </div>

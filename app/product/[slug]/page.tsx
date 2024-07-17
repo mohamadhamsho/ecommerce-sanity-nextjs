@@ -7,6 +7,7 @@ import { Star, Truck } from "lucide-react";
 
 async function SingleProduct({ params }: { params: { slug: string } }) {
   const data: ISingleProduct = await getSingleProduct(params.slug);
+  
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
@@ -55,9 +56,15 @@ async function SingleProduct({ params }: { params: { slug: string } }) {
                 image={data.images[0]}
                 name={data.name}
                 price={data.price}
+                price_id={data.price_id}
                 key={data._id}
               />
-              <Button variant={"secondary"}>Checkout now</Button>
+              <Button
+                variant={"secondary"}
+                
+              >
+                Checkout now{" "}
+              </Button>
             </div>
             <p className="mt-12 text-base text-gray-500 tracking-wide">
               {data.description}

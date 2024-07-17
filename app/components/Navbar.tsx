@@ -6,14 +6,21 @@ import { ShoppingBag } from "lucide-react";
 import { links } from "../constants/nav-links";
 import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
 import { useShoppingCart } from "use-shopping-cart";
+import { useEffect, useState } from "react";
 
 // export const dynamic = "force-dynamic";
 export const revalidate = 5;
 function Navbar() {
   const pathName = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  
   const { user } = useUser();
   const {handleCartClick} = useShoppingCart()
-  return (
+  useEffect(()=> {
+    setIsLoggedIn(window.location.href.toString().includes('sign-in'))
+  }, [])
+  return !isLoggedIn && (
     <header className="mb-8 border-b">
       <div className="flex items-center justify-between mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl">
         <Link href={"/"}>

@@ -14,3 +14,17 @@ export async function getNewestProduct() {
   
     return data;
   }
+export async function getAllProducts() {
+    const query = `
+          *[_type == "product"] | order(releaseDate desc) {
+              _id,
+              price,
+              name,
+              "slug": slug.current,
+              "categoryName": category -> name,
+              "imageUrl": images[0].asset->url,
+              }`;
+    const data = await client.fetch(query);
+  
+    return data;
+  }
