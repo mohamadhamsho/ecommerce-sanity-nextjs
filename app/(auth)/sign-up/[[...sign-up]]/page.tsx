@@ -1,5 +1,5 @@
 import { SignUp } from "@clerk/nextjs";
-import img from "../../../assets/shopping-login.jpg"
+import img from "../../../assets/xlarge.webp"
 import Image from "next/image";
 export default function Page() {
   return (
