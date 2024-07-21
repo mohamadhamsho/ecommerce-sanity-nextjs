@@ -11,6 +11,7 @@ import {
 } from "@clerk/nextjs";
 import CartProvider from "./components/Providers";
 import ShoppingCartModal from "./components/ShoppingCartModal";
+import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
             <Navbar />
             <ShoppingCartModal />
             {children}
+            <Footer />
           </CartProvider>
         </body>
       </html>

@@ -22,14 +22,14 @@ function ImageGallery({ images }: IImageGalleryProps) {
               alt="photo"
               priority
               width={200}
-              height={300}
-              className="h-full w-full object-cover object-center cursor-pointer"
+              height={150}
+              className="h-[160px] md:h-[140px] w-full object-cover object-center cursor-pointer"
               onClick={()=>handleChangeImage(image)}
             />
           </div>
         ))}
       </div>
-      <div className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4">
+      <div className="relative overflow-hidden rounded-lg bg-gray-100 lg:col-span-4 h-[610px]">
         <Image
           src={urlFor(bigImage).url()}
           alt="big photo"

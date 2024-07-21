@@ -2,7 +2,7 @@ import { client } from "../lib/sanity";
 
 export async function getNewestProduct() {
     const query = `
-          *[_type == "product"][0...4] | order(releaseDate desc) {
+          *[_type == "product"][0...4] | order(_createdAt desc) {
               _id,
               price,
               name,
@@ -16,7 +16,7 @@ export async function getNewestProduct() {
   }
 export async function getAllProducts() {
     const query = `
-          *[_type == "product"] | order(releaseDate desc) {
+          *[_type == "product"] | order(_createdAt desc) {
               _id,
               price,
               name,
