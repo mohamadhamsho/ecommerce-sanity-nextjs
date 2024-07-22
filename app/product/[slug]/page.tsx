@@ -1,13 +1,20 @@
-import AddToBag from "@/app/components/AddToBag";
-import ImageGallery from "@/app/components/ImageGallery";
-import { getSingleProduct } from "@/app/lib/single-product";
-import { ISingleProduct } from "@/app/types/interface";
-import { Button } from "@/components/ui/button";
-import { Star, Truck } from "lucide-react";
+import AddToBag from '@/app/components/AddToBag'
+import ImageGallery from '@/app/components/ImageGallery'
+import Product from '@/app/components/Product'
+import { getSimilarProducts } from '@/app/lib/category-products'
+import { getSingleProduct } from '@/app/lib/single-product'
+import { IProducts, ISingleProduct } from '@/app/types/interface'
+import { Button } from '@/components/ui/button'
+import { Star, Truck } from 'lucide-react'
 
 async function SingleProduct({ params }: { params: { slug: string } }) {
-  const data: ISingleProduct = await getSingleProduct(params.slug);
-  
+  const data: ISingleProduct = await getSingleProduct(params.slug)
+  const similarProducts: IProducts[] = await getSimilarProducts(
+    data.categoryName,
+  )
+
+  console.log(similarProducts)
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
@@ -59,12 +66,7 @@ async function SingleProduct({ params }: { params: { slug: string } }) {
                 price_id={data.price_id}
                 key={data._id}
               />
-              <Button
-                variant={"secondary"}
-                
-              >
-                Checkout now{" "}
-              </Button>
+              <Button variant={'secondary'}>Checkout now </Button>
             </div>
             <p className="mt-12 text-base text-gray-500 tracking-wide">
               {data.description}
@@ -72,8 +74,20 @@ async function SingleProduct({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </div>
+
+      {/* Similar Products */}
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 mt-20 mb-20">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          Our Similar Products for {data.category}
+        </h2>
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          {similarProducts.map((product) => (
+            <Product key={product._id} {...product} />
+          ))}
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default SingleProduct;
+export default SingleProduct

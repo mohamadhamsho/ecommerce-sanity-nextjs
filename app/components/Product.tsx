@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { IProducts } from "../types/interface";
 
 interface IProductsProps {
   _id: string
