@@ -15,7 +15,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Our Newest Products for {params.category}
         </h2>
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {data.map((product) => (
             <Product key={product._id} {...product} />
           ))}

@@ -12,23 +12,23 @@ interface IProductsProps {
 function Product({ _id, categoryName,imageUrl,name, price, slug }: IProductsProps) {
   return (
     <div className="group relative">
-      <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
+      <div className="aspect-square w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 h-52 sm:h-80">
         <Image
           src={imageUrl}
           alt="Product Image"
           width={300}
-          height={300}
+          height={400}
           className="w-full h-full object-cover object-center"
         />
       </div>
-      <div className="mt-4 flex justify-between">
+      <div className="mt-4 flex flex-col md:flex-row justify-between">
         <div>
           <h3 className="text-sm text-gray-700">
             <Link href={`/product/${slug}`}>{name}</Link>
           </h3>
           <p className="mt-1 text-sm text-gray-500">{categoryName}</p>
         </div>
-        <p className="text-sm font-medium text-gray-900">${price}</p>
+        <p className="text-sm font-medium text-gray-900 mt-2 md:mt-0">${price}</p>
       </div>
     </div>
   );
